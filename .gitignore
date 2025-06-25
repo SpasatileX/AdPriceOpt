@@ -65,5 +65,4 @@ ipython_config.py
 .python-version
 
 #
-output/
-data/
+output

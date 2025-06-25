@@ -16,13 +16,15 @@ def run():
 
     df = pd.read_csv(input_path)
     cost_df = metrics.calculate_cost_metrics(df, base_cost=config.BASE_AD_COST, decay_rate=config.COST_DECAY_RATE)
+
     recs = model.get_cost_recommendations(cost_df)
 
-    recs.to_csv(os.path.join(config.OUTPUT_DATA_DIR, config.RECOMMENDATIONS_CSV_FILENAME), index=False)
+    recs.to_csv(os.path.join(config.OUTPUT_DATA_DIR, config.RECOMMENDATIONS_CSV_FILENAME), index=False, sep=';')
 
     visualization.plot_cost_vs_views(recs, os.path.join(config.OUTPUT_DATA_DIR, config.COST_VS_VIEWS_PLOT_FILENAME))
     visualization.plot_cost_distribution(recs, os.path.join(config.OUTPUT_DATA_DIR, config.COST_DISTRIBUTION_PLOT_FILENAME))
 
+    print(f"Згенеровано записів: {len(cost_df)}")
     print("Завершено аналіз кампанії")
 
 if __name__ == '__main__':

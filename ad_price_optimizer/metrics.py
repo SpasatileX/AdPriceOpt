@@ -12,5 +12,6 @@ def calculate_cost_metrics(df: pd.DataFrame,
 
     agg_df['unit_cost'] = base_cost * np.exp(-decay_rate * agg_df['total_views'])
     agg_df['ctr'] = agg_df['total_clicks'] / agg_df['total_views']
+    agg_df['ctr'] = agg_df['ctr'].round(4)
     agg_df['unit_cost'] = agg_df['unit_cost'].round(4)
     return agg_df
